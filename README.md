@@ -1,6 +1,15 @@
 Author: Artem Shepelev
+
 Email: shepelev.artem@gmail.com
+
 Version: 0.1
+
+Programming Language: Python
+
+Dedicated project: OpenStack
+
+This repository is created and filled up due to participation in the Google Summer of Code 2014 contest
+
 
 ##### DEPEND LIST #####
 
@@ -40,6 +49,7 @@ On cloud controller (hosting nova-scheduler):
 Before launching stack:
 in /etc/nova/nova.conf on compute nodes (nova-compute)
 necessarily:
+
 	traffic_enable_topology_statistics - BoolOpt or StrOpt param -default False
 	specifying if the traffic statistics collector is enabled	
 
@@ -47,6 +57,7 @@ necessarily:
 	specifying the interface to sniff the traffic
 
 optionally:
+
 	refresh_traf_info - IntOpt - default 10 (secs)
 	how often would collector send traffic metrics to db
 
@@ -61,6 +72,7 @@ optionally:
 
 in /etc/nova/nova.conf on cloud contoller (nova-scheduler)
 necessarily:
+
 	traffic_enable_topology_statistics - BoolOpt or StrOpt param -default False
 	specifying if the traffic statistics collector is enabled
 	topology weigher won't work if it's disabled
@@ -73,6 +85,7 @@ necessarily:
 	topology description
 
 optionally:
+
 	topology_statistics_time - IntOpt param - default 3600 (secs)
 	specifying how much of previous time would scheduler consider when
 	getting the metrics
@@ -98,16 +111,22 @@ optionally:
 	To see that statistics is loaded to db
 
 3)	Use the command 'nova boot' to start the instance
-	Specify the topology priorities using --topology_priority <priority>
-	The <priority> looks like <node_id>:<priority>[,]
-	The <node_id> must be the same as the it setted up in nodes.yaml topology description file
+	Specify the topology priorities using --topology_priority 'priority'
+	The 'priority' looks like 'node_id':'priority'[,]
+	The 'node_id' must be the same as the it setted up in nodes.yaml topology description file
 
 ##### TODO LIST #####
 
 Make a rootwrap for traffic monitor that collects metric
+
 Make it work with several network interfaces of compute node
+
 Handle the case when compute node and cloud controller are hosted on one machine
+
 Add more cases of using traffic statistics during scheduling (weighing)
+
 Add using latency (ping) statistics during scheduling (weighing)
+
 Work on optimization of traffic monitor for less CPU load
+
 Work on adding traffic_monitor to non-compute nodes
