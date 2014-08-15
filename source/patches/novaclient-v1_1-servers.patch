@@ -1,0 +1,76 @@
+*** /home/ash/GSoC/test-install/python-novaclient/novaclient/v1_1/servers.py	2014-08-14 18:03:22.475418515 +0400
+--- /home/ash/GSoC/python-novaclient/novaclient/v1_1/servers.py	2014-08-14 18:00:45.748455670 +0400
+***************
+*** 403,409 ****
+                max_count=None, security_groups=None, key_name=None,
+                availability_zone=None, block_device_mapping=None,
+                block_device_mapping_v2=None, nics=None, scheduler_hints=None,
+!               config_drive=None, admin_pass=None, disk_config=None, **kwargs):
+          """
+          Create (boot) a new server.
+  
+--- 403,410 ----
+                max_count=None, security_groups=None, key_name=None,
+                availability_zone=None, block_device_mapping=None,
+                block_device_mapping_v2=None, nics=None, scheduler_hints=None,
+!               config_drive=None, admin_pass=None, disk_config=None,
+!               topology_priority=None, **kwargs):
+          """
+          Create (boot) a new server.
+  
+***************
+*** 541,546 ****
+--- 542,550 ----
+          if disk_config is not None:
+              body['server']['OS-DCF:diskConfig'] = disk_config
+  
++         if topology_priority:
++             body['server']['topology_priority'] = topology_priority
++ 
+          return self._create(resource_url, body, response_key,
+                              return_raw=return_raw, **kwargs)
+  
+***************
+*** 809,815 ****
+                 key_name=None, availability_zone=None,
+                 block_device_mapping=None, block_device_mapping_v2=None,
+                 nics=None, scheduler_hints=None,
+!                config_drive=None, disk_config=None, **kwargs):
+          # TODO(anthony): indicate in doc string if param is an extension
+          # and/or optional
+          """
+--- 813,819 ----
+                 key_name=None, availability_zone=None,
+                 block_device_mapping=None, block_device_mapping_v2=None,
+                 nics=None, scheduler_hints=None,
+!                config_drive=None, disk_config=None, topology_priority=None, **kwargs):
+          # TODO(anthony): indicate in doc string if param is an extension
+          # and/or optional
+          """
+***************
+*** 864,870 ****
+              max_count=max_count, security_groups=security_groups,
+              key_name=key_name, availability_zone=availability_zone,
+              scheduler_hints=scheduler_hints, config_drive=config_drive,
+!             disk_config=disk_config, **kwargs)
+  
+          if block_device_mapping:
+              resource_url = "/os-volumes_boot"
+--- 868,874 ----
+              max_count=max_count, security_groups=security_groups,
+              key_name=key_name, availability_zone=availability_zone,
+              scheduler_hints=scheduler_hints, config_drive=config_drive,
+!             disk_config=disk_config, topology_priority=topology_priority, **kwargs)
+  
+          if block_device_mapping:
+              resource_url = "/os-volumes_boot"
+***************
+*** 878,883 ****
+--- 882,888 ----
+              boot_kwargs['nics'] = nics
+  
+          response_key = "server"
++ 
+          return self._boot(resource_url, response_key, *boot_args,
+                  **boot_kwargs)
+  

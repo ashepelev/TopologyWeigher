@@ -1,0 +1,47 @@
+*** /home/ash/GSoC/test-install/python-novaclient/novaclient/v1_1/shell.py	2014-08-14 18:03:22.475418515 +0400
+--- /home/ash/GSoC/python-novaclient/novaclient/v1_1/shell.py	2014-08-14 18:00:45.756455208 +0400
+***************
+*** 287,292 ****
+--- 287,297 ----
+      else:
+          config_drive = args.config_drive
+  
++     if args.topology_priority:
++         topology_priority = args.topology_priority
++     else:
++         topology_priority = None
++ 
+      boot_kwargs = dict(
+              meta=meta,
+              files=files,
+***************
+*** 300,306 ****
+              block_device_mapping_v2=block_device_mapping_v2,
+              nics=nics,
+              scheduler_hints=hints,
+!             config_drive=config_drive)
+  
+      return boot_args, boot_kwargs
+  
+--- 305,312 ----
+              block_device_mapping_v2=block_device_mapping_v2,
+              nics=nics,
+              scheduler_hints=hints,
+!             config_drive=config_drive,
+!             topology_priority=topology_priority)
+  
+      return boot_args, boot_kwargs
+  
+***************
+*** 309,314 ****
+--- 315,324 ----
+       default=None,
+       metavar='<flavor>',
+       help=_("Name or ID of flavor (see 'nova flavor-list')."))
++ @utils.arg('--topology_priority',
++     default=None,
++     metavar='<topology_priority>',
++     help=_("Priority of nodes. Syntax <node_id>:<priority>"))
+  @utils.arg('--image',
+       default=None,
+       metavar='<image>',

@@ -1,0 +1,32 @@
+*** /home/ash/GSoC/test-install/nova/nova/api/openstack/compute/servers.py	2014-08-12 17:03:41.873082594 +0400
+--- /home/ash/GSoC/nova/nova/api/openstack/compute/servers.py	2014-08-14 16:51:04.898343353 +0400
+***************
+*** 925,930 ****
+--- 925,933 ----
+              auto_disk_config = server_dict.get('auto_disk_config')
+  
+          scheduler_hints = {}
++ 
++         topology_priority = server_dict.get('topology_priority',None)
++ 
+          if self.ext_mgr.is_loaded('OS-SCH-HNT'):
+              scheduler_hints = server_dict.get('scheduler_hints', {})
+  
+***************
+*** 954,960 ****
+                              block_device_mapping=block_device_mapping,
+                              auto_disk_config=auto_disk_config,
+                              scheduler_hints=scheduler_hints,
+!                             legacy_bdm=legacy_bdm)
+          except (exception.QuotaError,
+                  exception.PortLimitExceeded) as error:
+              raise exc.HTTPForbidden(
+--- 957,964 ----
+                              block_device_mapping=block_device_mapping,
+                              auto_disk_config=auto_disk_config,
+                              scheduler_hints=scheduler_hints,
+!                             legacy_bdm=legacy_bdm,
+!                             topology_priority=topology_priority)
+          except (exception.QuotaError,
+                  exception.PortLimitExceeded) as error:
+              raise exc.HTTPForbidden(
