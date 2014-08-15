@@ -4,6 +4,13 @@ Email: shepelev.artem@gmail.com
 
 Version: 0.1
 
+Programming Language: Python
+
+Dedicated project: OpenStack
+
+This repository is created and filled up due to participation in the Google Summer of Code 2014 contest
+
+
 ##### DEPEND LIST #####
 
 On compute node (hosting nova-compute):
@@ -104,9 +111,9 @@ optionally:
 	To see that statistics is loaded to db
 
 3)	Use the command 'nova boot' to start the instance
-	Specify the topology priorities using --topology_priority <priority>
-	The <priority> looks like <node_id>:<priority>[,]
-	The <node_id> must be the same as the it setted up in nodes.yaml topology description file
+	Specify the topology priorities using --topology_priority 'priority'
+	The 'priority' looks like 'node_id':'priority'[,]
+	The 'node_id' must be the same as the it setted up in nodes.yaml topology description file
 
 ##### TODO LIST #####
 
