@@ -6,10 +6,14 @@ Version: 0.1
 
 Programming Language: Python
 
-Dedicated project: OpenStack
+Organization: The OpenStack Foundation
+
+Assigned mentros: Yathiraj Udupi, Debojyoti Dutta
 
 This repository is created and filled up due to participation in the Google Summer of Code 2014 contest
 
+The idea of this work is to start make scheduler solutions based on the non-compute metrics.
+This scheduler based on the weigher terminology. It uses information about the traffic and latency in the topology to make the solution of the resource placement. The problem of the current scheduler was: It couldn't analyze the infrastructure metrics to make solutions. For example, it could place an instance on the node with a very high-load channel which connects it to the switch. This physical node could host a web-server or a database server which could take a lot of bandwidth. To reduce it - we need to take into account the load of the channels. I plan to develop this weigher and to add more features in it. 
 
 ##### DEPEND LIST #####
 
